@@ -26,4 +26,5 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: infra
         run: |
+          npm ci
           cdk deploy
