@@ -24,7 +24,7 @@ export class LambdaStack extends cdk.Stack {
 
     const fn = new lambda.Function(this, "HelloHandler", {
       runtime: lambda.Runtime.PROVIDED_AL2,
-      code: lambda.Code.fromAsset("src"),
+      code: lambda.Code.fromAsset("../src"),
       handler: "hello.handler",
       layers: [layer],
     });
