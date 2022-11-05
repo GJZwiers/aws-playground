@@ -2,8 +2,11 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -15,6 +18,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-3
-      - run: |
+      - name: bootstrap CDK
+        run: |
           npm install -g aws-cdk
           cdk bootstrap aws://305747223196/eu-west-3
+      - name: deploy
+        if: github.ref == 'refs/heads/main'
+        run: cdk deploy
