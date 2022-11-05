@@ -9,13 +9,17 @@ export class UserStack extends cdk.Stack {
     const adminGroup = new iam.Group(this, "AdminGroup", {
       groupName: "playground-admins",
       managedPolicies: [
-        iam.ManagedPolicy.fromManagedPolicyName(this, "AdminAccess", "AdministratorAccess"),
-      ]
+        iam.ManagedPolicy.fromManagedPolicyName(
+          this,
+          "AdminAccess",
+          "AdministratorAccess",
+        ),
+      ],
     });
 
     new iam.User(this, "GitHubActionsUser", {
       userName: "GitHubActionsUser",
-      groups: [ adminGroup ]
+      groups: [adminGroup],
     });
   }
 }
