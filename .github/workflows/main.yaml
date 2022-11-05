@@ -27,4 +27,4 @@ jobs:
         working-directory: infra
         run: |
           npm ci
-          cdk deploy
+          cdk deploy UserStack InfraStack --require-approval never
