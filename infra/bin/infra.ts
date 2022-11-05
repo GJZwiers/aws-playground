@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { InfraStack } from "../lib/infra-stack";
+import { LambdaStack } from "../lib/lambda-stack";
 import { UserStack } from "../lib/user-stack";
 
 const app = new cdk.App();
@@ -13,6 +13,6 @@ new UserStack(app, "UserStack", {
   env: { account, region },
 });
 
-new InfraStack(app, "InfraStack", {
+new LambdaStack(app, "LambdaStack", {
   env: { account, region },
 });
