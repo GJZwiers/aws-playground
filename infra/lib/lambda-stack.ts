@@ -30,13 +30,32 @@ export class LambdaStack extends cdk.Stack {
       layers: [layer],
     });
 
-    fn.role?.attachInlinePolicy(new iam.Policy(this, 'allow-lambda-list-functions', {
-      statements: [
-        new iam.PolicyStatement({
-          actions: ['lambda:ListFunctions'],
-          resources: ['*']
-        })
-      ]
-    }));
+    fn.role?.attachInlinePolicy(
+      new iam.Policy(this, "allow-lambda-list-functions", {
+        statements: [
+          new iam.PolicyStatement({
+            actions: ["lambda:ListFunctions"],
+            resources: ["*"],
+          }),
+        ],
+      }),
+    );
+
+    const fn2 = new lambda.Function(this, "DDBHandler", {
+      runtime: lambda.Runtime.PROVIDED_AL2,
+      code: lambda.Code.fromAsset("../src"),
+      handler: "ddb.handler",
+      layers: [layer],
+    });
+    fn2.role?.attachInlinePolicy(
+      new iam.Policy(this, "allow-ddb-create-table", {
+        statements: [
+          new iam.PolicyStatement({
+            actions: ["dynamodb:createTable"],
+            resources: ["*"],
+          }),
+        ],
+      }),
+    );
   }
 }
