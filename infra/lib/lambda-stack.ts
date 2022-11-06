@@ -46,6 +46,7 @@ export class LambdaStack extends cdk.Stack {
       code: lambda.Code.fromAsset("../src"),
       handler: "ddb.handler",
       layers: [layer],
+      timeout: cdk.Duration.seconds(10)
     });
     fn2.role?.attachInlinePolicy(
       new iam.Policy(this, "allow-ddb-create-table", {
