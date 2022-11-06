@@ -1,4 +1,5 @@
 import * as cdk from "aws-cdk-lib";
+import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import { CfnApplication } from "aws-cdk-lib/aws-sam";
 import { Construct } from "constructs";
@@ -28,5 +29,14 @@ export class LambdaStack extends cdk.Stack {
       handler: "hello.handler",
       layers: [layer],
     });
+
+    fn.role?.attachInlinePolicy(new iam.Policy(this, 'allow-lambda-list-functions', {
+      statements: [
+        new iam.PolicyStatement({
+          actions: ['lambda:ListFunctions'],
+          resources: ['*']
+        })
+      ]
+    }));
   }
 }
