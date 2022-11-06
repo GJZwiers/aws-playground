@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyResultV2, Context } from "https://deno.land/x/lambda@1.9.0-1/mod.ts";
-import * as dynamodb from "https://deno.land/x/aws_sdk@v3.32.0-1/client-dynamodb/mod.ts";
+import * as dynamodb from "https://deno.land/x/aws_sdk@v3.30.0-1/client-dynamodb/mod.ts";
 
 export async function handler(_event: APIGatewayProxyEventV2, _context: Context): Promise<APIGatewayProxyResultV2> {
   const client = new dynamodb.DynamoDB({ apiVersion: 'latest' });
