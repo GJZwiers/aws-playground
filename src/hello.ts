@@ -2,7 +2,7 @@ import {
   APIGatewayProxyEventV2,
   APIGatewayProxyResultV2,
   Context,
-} from "https://deno.land/x/lambda@1.9.0-1/mod.ts";
+} from "https://deno.land/x/lambda@1.27.0/mod.ts";
 import { ApiFactory } from "https://deno.land/x/aws_api@v0.7.0/client/mod.ts";
 import { Lambda } from "https://deno.land/x/aws_api@v0.7.0/services/lambda/mod.ts";
 
