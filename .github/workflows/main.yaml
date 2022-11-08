@@ -23,7 +23,7 @@ jobs:
           npm install -g aws-cdk
           cdk bootstrap aws://305747223196/eu-west-3
       - name: deploy
-        if: github.ref == 'refs/heads/main'
+        # if: github.ref == 'refs/heads/main'
         working-directory: infra
         run: |
           npm ci
