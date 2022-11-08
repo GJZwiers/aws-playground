@@ -45,7 +45,7 @@ export class LambdaStack extends cdk.Stack {
 
     const fn2 = new lambda.Function(this, "DdbHandler", {
       runtime: lambda.Runtime.PROVIDED_AL2,
-      code: lambda.Code.fromAssetImage("../../src/"),
+      code: lambda.Code.fromAssetImage("../src"),
       handler: "ddb.handler",
       layers: [layer],
     });
