@@ -40,5 +40,21 @@ export class LambdaStack extends cdk.Stack {
         ],
       }),
     );
+    
+    const fn2 = new lambda.DockerImageFunction(this, "DockerDenoHandler", {
+      code: lambda.DockerImageCode.fromImageAsset("../dockerfile"),
+      layers: [layer],
+    });
+
+    fn2.role?.attachInlinePolicy(
+      new iam.Policy(this, "allow-ddb-create-table", {
+        statements: [
+          new iam.PolicyStatement({
+            actions: ["dynamodb:createTable"],
+            resources: ["*"],
+          }),
+        ],
+      }),
+    );
   }
 }
