@@ -42,7 +42,7 @@ export class LambdaStack extends cdk.Stack {
     );
     
     const fn2 = new lambda.DockerImageFunction(this, "DockerDenoHandler", {
-      code: lambda.DockerImageCode.fromImageAsset("../dockerfile"),
+      code: lambda.DockerImageCode.fromImageAsset("../"),
       layers: [layer],
     });
 
