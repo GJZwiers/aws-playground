@@ -17,6 +17,7 @@ export async function handler(
   const funs = await lambda.listFunctions({
     MaxItems: 10,
   });
+  console.log(funs);
 
   return {
     statusCode: 200,
