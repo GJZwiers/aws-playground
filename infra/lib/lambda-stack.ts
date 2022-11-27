@@ -21,5 +21,20 @@ export class LambdaStack extends cdk.Stack {
         ],
       }),
     );
+
+    const fn2 = new lambda.DockerImageFunction(this, "DockerHandler", {
+      code: lambda.DockerImageCode.fromImageAsset("../node_src"),
+    });
+
+    fn2.role?.attachInlinePolicy(
+      new iam.Policy(this, "allow-lambda-list-functions", {
+        statements: [
+          new iam.PolicyStatement({
+            actions: ["lambda:ListFunctions"],
+            resources: ["*"],
+          }),
+        ],
+      }),
+    );
   }
 }
