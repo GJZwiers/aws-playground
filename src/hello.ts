@@ -2,7 +2,7 @@ import {
   APIGatewayProxyEventV2,
   APIGatewayProxyResultV2,
   Context,
-} from "https://deno.land/x/lambda@1.27.0/mod.ts";
+} from "https://deno.land/x/lambda@1.28.1/mod.ts";
 import { LambdaClient, ListFunctionsCommand } from "npm:@aws-sdk/client-lambda";
  
 export async function handler(
