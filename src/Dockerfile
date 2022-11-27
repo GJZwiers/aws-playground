@@ -1,6 +1,6 @@
 FROM hayd/deno-lambda:1.28.2
 
-COPY hello.ts .
-RUN deno cache hello.ts
+COPY listFunctions.ts .
+RUN deno cache listFunctions.ts
 
-CMD ["hello.handler"]
+CMD ["listFunctions.handler"]
