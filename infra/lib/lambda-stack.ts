@@ -27,7 +27,7 @@ export class LambdaStack extends cdk.Stack {
     });
 
     fn2.role?.attachInlinePolicy(
-      new iam.Policy(this, "allow-lambda-list-functions", {
+      new iam.Policy(this, "allow-lambda-node-list-functions", {
         statements: [
           new iam.PolicyStatement({
             actions: ["lambda:ListFunctions"],
