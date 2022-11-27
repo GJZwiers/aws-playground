@@ -25,7 +25,6 @@ export class LambdaStack extends cdk.Stack {
 
     const fn = new lambda.DockerImageFunction(this, "DockerHandler", {
       code: lambda.DockerImageCode.fromImageAsset("../src"),
-      layers: [layer]
     });
 
     // const fn = new lambda.Function(this, "HelloHandler", {
