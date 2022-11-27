@@ -23,12 +23,17 @@ export class LambdaStack extends cdk.Stack {
       denoRuntime.getAtt("Outputs.LayerArn").toString(),
     );
 
-    const fn = new lambda.Function(this, "HelloHandler", {
-      runtime: lambda.Runtime.PROVIDED_AL2,
-      code: lambda.Code.fromAsset("../src"),
-      handler: "hello.handler",
-      layers: [layer],
+    const fn = new lambda.DockerImageFunction(this, "DockerHandler", {
+      code: lambda.DockerImageCode.fromImageAsset("../src"),
+      layers: [layer]
     });
+
+    // const fn = new lambda.Function(this, "HelloHandler", {
+    //   runtime: lambda.Runtime.PROVIDED_AL2,
+    //   code: lambda.Code.fromAsset("../src"),
+    //   handler: "hello.handler",
+    //   layers: [layer],
+    // });
 
     fn.role?.attachInlinePolicy(
       new iam.Policy(this, "allow-lambda-list-functions", {
