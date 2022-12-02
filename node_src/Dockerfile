@@ -2,7 +2,7 @@ FROM public.ecr.aws/lambda/nodejs:18
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --production
+RUN npm install --omit=dev
 
 # Copy function code
 COPY listFunctions.mjs .
