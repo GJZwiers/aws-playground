@@ -11,30 +11,19 @@ export class LambdaStack extends cdk.Stack {
       code: lambda.DockerImageCode.fromImageAsset("../src"),
     });
 
-    fn.role?.attachInlinePolicy(
-      new iam.Policy(this, "allow-lambda-list-functions", {
-        statements: [
-          new iam.PolicyStatement({
-            actions: ["lambda:ListFunctions"],
-            resources: ["*"],
-          }),
-        ],
-      }),
-    );
+    const policy = new iam.Policy(this, "allow-lambda-list-functions", {
+      statements: [
+        new iam.PolicyStatement({
+          actions: ["lambda:ListFunctions"],
+          resources: ["*"],
+        }),
+      ],
+    });
+    fn.role?.attachInlinePolicy(policy);
 
     const fn2 = new lambda.DockerImageFunction(this, "DockerHandlerNode", {
       code: lambda.DockerImageCode.fromImageAsset("../node_src"),
     });
-
-    fn2.role?.attachInlinePolicy(
-      new iam.Policy(this, "allow-lambda-node-list-functions", {
-        statements: [
-          new iam.PolicyStatement({
-            actions: ["lambda:ListFunctions"],
-            resources: ["*"],
-          }),
-        ],
-      }),
-    );
+    fn2.role?.attachInlinePolicy(policy);
   }
 }

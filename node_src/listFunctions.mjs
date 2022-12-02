@@ -1,11 +1,11 @@
 import { LambdaClient, ListFunctionsCommand } from "@aws-sdk/client-lambda";
+
+const client = new LambdaClient({ region: "eu-west-3" });
  
 export async function handler(
   _event,
   _context,
 ) {
-  const client = new LambdaClient({ region: "eu-west-3" });
-
   const funs = await client.send(new ListFunctionsCommand({
     MaxItems: 10,
   }));
