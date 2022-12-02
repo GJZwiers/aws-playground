@@ -1,4 +1,4 @@
-FROM hayd/deno-lambda:1.28.2
+FROM hayd/deno-lambda:1.28.3
 
 COPY listFunctions.ts .
 
