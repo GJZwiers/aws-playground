@@ -13,7 +13,7 @@ export class LambdaStack extends cdk.Stack {
 
     const lambdaPolicyStatement = new iam.PolicyStatement({
       actions: ['lambda:ListFunctions'],
-      resources: ['arn:aws:lambda:::*'],
+      resources: ['*'],
     });
 
     const lambdaPolicy = new iam.Policy(
